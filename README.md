@@ -27,3 +27,13 @@ In cases where vehicles exceed the specified speed limit, the system initiates a
   This results in an accurate representation of the individual's net income, providing valuable insight into their overall financial situation.
  With its user-friendly interface and precise calculations, this program offers individuals a convenient tool for understanding and managing their personal finances effectively.
 
+## Set up instruction
+
+### Clone the repository:
+### Navigate to the Project Directory:
+### Install Dependencies 
+### Set Environment Variables
+### Run the Project
+### Access the Application
+### Testing (Optional) e.g npm test 
+
