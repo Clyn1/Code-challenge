@@ -12,18 +12,26 @@
 
 <div class="grade-section">
     <h2>Grade Calculation</h2>
+    <label for="gradeInput">Enter marks:</label>
+    <input type="number" id="gradeInput" min="0" max="100">
     <button onclick="calculateGradeAndShow()">Calculate Grade</button>
     <p id="gradeOutput"></p>
 </div>
 
 <div class="speed-section">
     <h2>Demerit Points and License Status</h2>
+    <label for="speedInput">Enter car speed:</label>
+    <input type="number" id="speedInput" min="0">
     <button onclick="calculateDemeritAndLicenseStatus()">Check Speed</button>
     <p id="speedOutput"></p>
 </div>
 
 <div class="salary-section">
     <h2>Salary Calculation</h2>
+    <label for="salaryInput">Enter basic salary:</label>
+    <input type="number" id="salaryInput" min="0">
+    <label for="benefitsInput">Enter benefits:</label>
+    <input type="number" id="benefitsInput" min="0">
     <button onclick="calculateSalaryAndShow()">Calculate Salary</button>
     <div id="salaryOutput"></div>
 </div>
