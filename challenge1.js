@@ -13,27 +13,22 @@ const calculateGrade = (marks) => {
     }
 }
 
-// Function to prompt the user for input
-const promptForMarks = () => {
-    let marks = parseFloat(prompt("Enter student marks (between 0 and 100):"));
-
-    // Check if the input is valid
-    while (isNaN(marks) || marks < 0 || marks > 100) {
-        marks = parseFloat(prompt("Invalid input! Enter student marks (between 0 and 100):"));
-    }
-
-    return marks;
+// Function to get marks from user input
+const getMarks = () => {
+    return parseFloat(document.getElementById("marksInput").value);
 }
 
-// Main program
-const main = () => {
-    // Prompt for student marks
-    const marks = promptForMarks();
+// Function to display the grade
+const displayGrade = (grade) => {
+    document.getElementById("gradeOutput").textContent = `The student's grade is: ${grade}`;
+}
 
-    // Calculate and output the grade
+// Function to handle the button click event
+const handleButtonClick = () => {
+    const marks = getMarks();
     const grade = calculateGrade(marks);
-    console.log(`The student's grade is: ${grade}`);
+    displayGrade(grade);
 }
 
-// Run the main program
-main();
+// Event listener for button click
+document.getElementById("calculateButton").addEventListener("click", handleButtonClick);
