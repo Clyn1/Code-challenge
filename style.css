@@ -1,0 +1,45 @@
+/* Apply basic styling to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+/* Style the main program output */
+.output {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+/* Style the grade output */
+.grade {
+    font-weight: bold;
+    color: #008000; /* green */
+}
+
+/* Style the license status output */
+.license-status {
+    font-weight: bold;
+    color: #ff0000; /* red */
+}
+
+/* Style the salary details output */
+.salary-details {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+/* Style the salary details labels */
+.salary-label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style the salary details values */
+.salary-value {
+    color: #007bff; /* blue */
+}
