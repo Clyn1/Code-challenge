@@ -3,48 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade, Speed, and Salary Calculator</title>
-    <!-- Link to the CSS file -->
+    <title>Grade Calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Grade Calculator</h1>
+        <div>
+            <label for="marksInput">Enter student marks (between 0 and 100):</label>
+            <input type="number" id="marksInput">
+            <button onclick="calculateGrade()">Calculate Grade</button>
+        </div>
+        <div id="gradeOutput" class="output"></div>
 
-<h1>Grade, Speed, and Salary Calculator</h1>
+        <h1>Speed Checker</h1>
+        <div>
+            <label for="speedInput">Enter car speed (km/h):</label>
+            <input type="number" id="speedInput">
+            <button onclick="processSpeed()">Check Speed</button>
+        </div>
+        <div id="speedOutput" class="output"></div>
 
-<div class="output">
-    <!-- Output for grade calculation -->
-    <h2>Grade Calculation</h2>
-    <label for="marksInput">Enter student marks (between 0 and 100):</label>
-    <input type="number" id="marksInput" min="0" max="100">
-    <button onclick="calculateGrade()">Calculate Grade</button>
-    <p id="gradeOutput" class="grade"></p>
-</div>
-
-<div class="output">
-    <!-- Output for speed and license status -->
-    <h2>Speed and License Status</h2>
-    <label for="speedInput">Enter car speed (in km/h):</label>
-    <input type="number" id="speedInput" min="0">
-    <button onclick="processSpeed()">Check Speed</button>
-    <p id="speedOutput" class="license-status"></p>
-</div>
-
-<div class="salary-details">
-    <!-- Output for salary calculation -->
-    <h2>Salary Calculation</h2>
-    <label for="basicSalaryInput">Enter basic salary:</label>
-    <input type="number" id="basicSalaryInput" min="0">
-    <label for="benefitsInput">Enter benefits:</label>
-    <input type="number" id="benefitsInput" min="0">
-    <button onclick="calculateNetSalary()">Calculate Net Salary</button>
-    <p>Gross Salary: <span id="grossSalaryOutput" class="salary-value"></span></p>
-    <p>PAYE (Tax): <span id="payeeOutput" class="salary-value"></span></p>
-    <p>NHIF Deductions: <span id="nhifDeductionsOutput" class="salary-value"></span></p>
-    <p>NSSF Deductions: <span id="nssfDeductionsOutput" class="salary-value"></span></p>
-    <p>Net Salary: <span id="netSalaryOutput" class="salary-value"></span></p>
-</div>
-
-<!-- Link to the JavaScript file -->
-<script src="script.js"></script>
+        <h1>Salary Calculator</h1>
+        <div>
+            <label for="basicSalaryInput">Enter basic salary:</label>
+            <input type="number" id="basicSalaryInput">
+        </div>
+        <div>
+            <label for="benefitsInput">Enter benefits:</label>
+            <input type="number" id="benefitsInput">
+            <button onclick="calculateNetSalary()">Calculate Net Salary</button>
+        </div>
+        <div id="grossSalaryOutput" class="salary-details"></div>
+        <div id="payeeOutput" class="salary-details"></div>
+        <div id="nhifDeductionsOutput" class="salary-details"></div>
+        <div id="nssfDeductionsOutput" class="salary-details"></div>
+        <div id="netSalaryOutput" class="salary-details"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
