@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salary and Grades Calculator</title>
+    <title>Grade, Speed, and Salary Calculator</title>
     <style>
         /* Apply basic styling to the body */
         body {
@@ -87,14 +87,14 @@
     function main() {
         const marks = promptForMarks();
         const grade = calculateGrade(marks);
-        console.log(`The student's grade is: ${grade}`);
+        document.getElementById('gradeOutput').textContent = `The student's grade is: ${grade}`;
     }
 
     // Call the main program
     main();
 </script>
 
-<!-- Script for the Speed and Salary Calculation -->
+<!-- Script for the Speed Processing -->
 <script>
     // Function to calculate demerit points
     function calculateDemeritPoints(speed) {
@@ -144,7 +144,7 @@
 
         const demeritPoints = calculateDemeritPoints(speed);
         const result = checkLicenseStatus(demeritPoints);
-        console.log(result);
+        document.getElementById('speedOutput').textContent = result;
     }
 
     // Call the processSpeed function to start the program
@@ -195,4 +195,61 @@
                 break;
             }
         }
+        return tax;
     }
+
+    function calculateNHIF(grossSalary) {
+    let nhif = 0;
+    for (const rate of NHIF_RATES) {
+        if (grossSalary <= rate.limit) {
+            nhif = rate.amount;
+            break;
+        }
+    }
+    return nhif;
+}
+
+// Function to calculate net salary
+function calculateNetSalary(grossSalary) {
+    const PAYE = calculatePAYE(grossSalary);
+    const NHIF = calculateNHIF(grossSalary);
+    const deductions = PAYE + NHIF;
+    const netSalary = grossSalary - deductions;
+    return netSalary;
+}
+
+// Function to handle salary calculation
+function processSalary() {
+    let grossSalary;
+    do {
+        grossSalary = parseInt(prompt("Enter gross salary:"));
+        if (isNaN(grossSalary) || grossSalary <= 0) {
+            alert("Invalid input. Please enter a valid positive number.");
+        }
+    } while (isNaN(grossSalary) || grossSalary <= 0);
+
+    const PAYE = calculatePAYE(grossSalary);
+    const NHIF = calculateNHIF(grossSalary);
+    const netSalary = calculateNetSalary(grossSalary);
+
+    document.getElementById('salaryDetails').innerHTML = `
+        <div class="salary-label">Gross Salary:</div>
+        <div class="salary-value">$${grossSalary}</div>
+        <div class="salary-label">PAYE (Tax):</div>
+        <div class="salary-value">$${PAYE}</div>
+        <div class="salary-label">NHIF Deduction:</div>
+        <div class="salary-value">$${NHIF}</div>
+        <div class="salary-label">Net Salary:</div>
+        <div class="salary-value">$${netSalary}</div>
+    `;
+}
+
+// Call the processSalary function to start the salary calculation
+processSalary();
+</script>
+
+<!-- Display Area for Salary Details -->
+<div id="salaryDetails" class="salary-details"></div>
+
+</body>
+</html>
