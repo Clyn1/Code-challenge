@@ -3,44 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Salary and Grades Calculator</title>
+    <style>
+        /* Apply basic styling to the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        /* Style the main program output */
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        /* Style the grade output */
+        .grade {
+            font-weight: bold;
+            color: #008000; /* green */
+        }
+
+        /* Style the license status output */
+        .license-status {
+            font-weight: bold;
+            color: #ff0000; /* red */
+        }
+
+        /* Style the salary details output */
+        .salary-details {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        /* Style the salary details labels */
+        .salary-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Style the salary details values */
+        .salary-value {
+            color: #007bff; /* blue */
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Grade Calculator</h1>
-        <div>
-            <label for="marksInput">Enter student marks (between 0 and 100):</label>
-            <input type="number" id="marksInput">
-            <button onclick="calculateGrade()">Calculate Grade</button>]
-            <script>/home/eunivet/persona/Code-challenge-1/challenge1.js</script>
-        </div>
-        <div id="gradeOutput" class="output"></div>
 
-        <h1>Speed Checker</h1>
-        <div>
-            <label for="speedInput">Enter car speed (km/h):</label>
-            <input type="number" id="speedInput">
-            <button onclick="processSpeed()">Check Speed</button>
-        </div>
-        <div id="speedOutput" class="output"></div>
+<!-- Script for the Grade Calculation -->
+<script>
+    // Function to prompt the user for input and validate
+    function promptForMarks() {
+        let marks;
+        do {
+            marks = parseFloat(prompt("Enter student marks (between 0 and 100):"));
+            if (isNaN(marks) || marks < 0 || marks > 100) {
+                alert("Invalid input. Please enter a number between 0 and 100.");
+            }
+        } while (isNaN(marks) || marks < 0 || marks > 100);
+        return marks;
+    }
 
-        <h1>Salary Calculator</h1>
-        <div>
-            <label for="basicSalaryInput">Enter basic salary:</label>
-            <input type="number" id="basicSalaryInput">
-        </div>
-        <div>
-            <label for="benefitsInput">Enter benefits:</label>
-            <input type="number" id="benefitsInput">
-            <button onclick="calculateNetSalary()">Calculate Net Salary</button>
-        </div>
-        <div id="grossSalaryOutput" class="salary-details"></div>
-        <div id="payeeOutput" class="salary-details"></div>
-        <div id="nhifDeductionsOutput" class="salary-details"></div>
-        <div id="nssfDeductionsOutput" class="salary-details"></div>
-        <div id="netSalaryOutput" class="salary-details"></div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+    // Function to calculate the grade
+    function calculateGrade(marks) {
+        if (marks > 79) {
+            return 'A';
+        } else if (marks >= 60) {
+            return 'B';
+        } else if (marks >= 50) {
+            return 'C';
+        } else if (marks >= 40) {
+            return 'D';
+        } else {
+            return 'E';
+        }
+    }
+
+    // Main function for grade calculation
+    function main() {
+        const marks = promptForMarks();
+        const grade = calculateGrade(marks);
+        console.log(`The student's grade is: ${grade}`);
+    }
+
+    // Call the main program
+    main();
+</script>
+
+<!-- Script for the Speed and Salary Calculation -->
+<script>
+    // Function to calculate demerit points
+    function calculateDemeritPoints(speed) {
+        const speedLimit = 70;
+        const kmPerDemeritPoint = 5;
+        const pointsPerKmOverLimit = 1;
+
+        // If speed is less than or equal to the speed limit, return 0 points
+        if (speed <= speedLimit) {
+            return 0;
+        }
+
+        // Calculate the number of km/h over the speed limit
+        const kmOverLimit = speed - speedLimit;
+
+        // Calculate the number of demerit points
+        let demeritPoints = Math.floor(kmOverLimit / kmPerDemeritPoint) * pointsPerKmOverLimit;
+
+        // Consider remaining kilometers and add additional demerit points if there are any
+        if (kmOverLimit % kmPerDemeritPoint !== 0) {
+            demeritPoints += pointsPerKmOverLimit;
+        }
+
+        return demeritPoints;
+    }
+
+    // Function to check if license is suspended
+    function checkLicenseStatus(points) {
+        const pointsToSuspend = 12;
+
+        if (points >= pointsToSuspend) {
+            return "License suspended";
+        } else {
+            return "Points: " + points;
+        }
+    }
+
+    // Function to handle the entire process
+    function processSpeed() {
+        let speed;
+        do {
+            speed = parseInt(prompt("Enter the car speed:"));
+            if (isNaN(speed) || speed <= 0) {
+                alert("Invalid input. Please enter a valid positive number.");
+            }
+        } while (isNaN(speed) || speed <= 0);
+
+        const demeritPoints = calculateDemeritPoints(speed);
+        const result = checkLicenseStatus(demeritPoints);
+        console.log(result);
+    }
+
+    // Call the processSpeed function to start the program
+    processSpeed();
+</script>
+
+<!-- Script for the Salary Calculation -->
+<script>
+    // Constants for tax rates
+    const TAX_RATES = [
+        { limit: 24000, rate: 0 },
+        { limit: 32333, rate: 0.1 },
+        { limit: 40467, rate: 0.15 },
+        { limit: 48600, rate: 0.2 },
+        { limit: 56733, rate: 0.25 },
+        { limit: Infinity, rate: 0.3 }
+    ];
+
+    // Constants for NHIF rates
+    const NHIF_RATES = [
+        { limit: 6000, amount: 150 },
+        { limit: 8000, amount: 300 },
+        { limit: 12000, amount: 400 },
+        { limit: 15000, amount: 500 },
+        { limit: 20000, amount: 600 },
+        { limit: 25000, amount: 750 },
+        { limit: 30000, amount: 850 },
+        { limit: 35000, amount: 900 },
+        { limit: 40000, amount: 950 },
+        { limit: 45000, amount: 1000 },
+        { limit: 50000, amount: 1100 },
+        { limit: 60000, amount: 1200 },
+        { limit: 70000, amount: 1300 },
+        { limit: 80000, amount: 1400 },
+        { limit: 90000, amount: 1500 },
+        { limit: 100000, amount: 1600 },
+        { limit: Infinity, amount: 1700 }
+    ];
+
+    // Function to calculate PAYE (Tax) based on the provided KRA Tax Rates
+    function calculatePAYE(grossSalary) {
+        let tax = 0;
+        for (const rate of TAX_RATES) {
+            if (grossSalary > rate.limit) {
+                tax += (rate.limit - (rate.limit - rate.limit)) * rate.rate;
+            } else {
+                tax += (grossSalary - rate.limit) * rate.rate;
+                break;
+            }
+        }
+    }
