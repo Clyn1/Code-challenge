@@ -81,13 +81,20 @@ function calculateNetSalary(basicSalary, benefits) {
     };
 }
 
-// Example usage:
-const basicSalary = 50000; // Example basic salary
-const benefits = 10000; // Example benefits
-const salaryDetails = calculateNetSalary(basicSalary, benefits);
+// Prompting the user for input values
+const basicSalary = parseFloat(prompt("Enter basic salary:"));
+const benefits = parseFloat(prompt("Enter benefits:"));
 
-console.log("Gross Salary:", salaryDetails.grossSalary);
-console.log("PAYE (Tax):", salaryDetails.payee);
-console.log("NHIF Deductions:", salaryDetails.nhifDeductions);
-console.log("NSSF Deductions:", salaryDetails.nssfDeductions);
-console.log("Net Salary:", salaryDetails.netSalary);
+// Validating the inputs
+if (isNaN(basicSalary) || isNaN(benefits)) {
+    console.log("Please enter valid numbers for basic salary and benefits.");
+} else {
+    // Calculating net salary and displaying the results
+    const salaryDetails = calculateNetSalary(basicSalary, benefits);
+
+    console.log("Gross Salary:", salaryDetails.grossSalary);
+    console.log("PAYE (Tax):", salaryDetails.payee);
+    console.log("NHIF Deductions:", salaryDetails.nhifDeductions);
+    console.log("NSSF Deductions:", salaryDetails.nssfDeductions);
+    console.log("Net Salary:", salaryDetails.netSalary);
+}
