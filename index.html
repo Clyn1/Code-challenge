@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multifunction Calculator</title>
-    <link rel="stylesheet" href="style.css">  </head>
+    <title>Interactive Calculators</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <h1>Multifunction Calculator</h1>
+    <h1>Interactive Calculators</h1>
 
-    <h2>Grade Calculator</h2>
-    <button id="prompt-button">Calculate Grade</button>
-    <div class="output">
-        <p id="grade-output"></p>
+    <div class="grade-calculator">
+        <h2>Grade Calculator</h2>
+        <button id="prompt-button">Calculate Grade</button>
+        <div id="grade-output"></div>
     </div>
 
-    <h2>License Status Check</h2>
-    <label for="car-speed">Enter car speed (km/h):</label>
-    <input type="number" id="car-speed">
-    <button id="check-license-button">Check License Status</button>
-    <div class="output">
-        <p id="license-status-output"></p>
+    <div class="license-check">
+        <h2>License Status Check</h2>
+        <label for="car-speed">Enter car speed (km/h):</label>
+        <input type="number" id="car-speed">
+        <button id="check-license-button">Check License Status</button>
+        <div id="license-status-output"></div>
     </div>
 
-    <h2>Net Salary Calculator</h2>
-    <p>Enter your salary details:</p>
-    <label for="basic-salary">Basic Salary:</label>
-    <input type="number" id="basic-salary" required>
-    <br>
-    <label for="benefits">Benefits:</label>
-    <input type="number" id="benefits" required>
-    <br>
-    <button id="calculate-button">Calculate Net Salary</button>
-    <div id="results"></div>
+    <div class="salary-calculator">
+        <h2>Net Salary Calculator</h2>
+        <label for="basic-salary">Basic Salary:</label>
+        <input type="number" id="basic-salary" required>
+        <br>
+        <label for="benefits">Benefits:</label>
+        <input type="number" id="benefits" required>
+        <br>
+        <button id="calculate-button">Calculate Net Salary</button>
+        <div id="salary-results"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
