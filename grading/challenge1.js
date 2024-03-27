@@ -1,26 +1,29 @@
-function calculateGrade(marks) {
-  // Validate input (0-100)
-  if (marks < 0 || marks > 100) {
-    return "Invalid marks! Please enter a value between 0 and 100.";
-  }
-
-  // Determine grade based on marks
-  if (marks > 79) {
-    return "A";
-  } else if (marks >= 60) {
-    return "B";
-  } else if (marks >= 50) {
-    return "C";
-  } else if (marks >= 40) {
-    return "D";
+function studentGradeGenerator() {
+  // Prompt the user to enter student marks
+  const studentMarks = prompt("Please enter student marks (between 0 and 100):");
+  
+  // Validate the input
+  if (studentMarks >= 0 && studentMarks <= 100) {
+    // Determine the grade based on the marks
+    let grade;
+    if (studentMarks >= 80) {
+      grade = "A";
+    } else if (studentMarks >= 60) {
+      grade = "B";
+    } else if (studentMarks >= 50) {
+      grade = "C";
+    } else if (studentMarks >= 40) {
+      grade = "D";
+    } else {
+      grade = "E";
+    }
+    
+    // Display the grade
+    const outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = "The student's grade is: " + grade;
   } else {
-    return "E";
+    // Display an error message if the input is invalid
+    const outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = "Invalid input! Please enter a number between 0 and 100.";
   }
 }
-
-// Prompt user for input
-const marks = parseFloat(prompt("Enter student marks (between 0 and 100):"));
-
-// Calculate and display grade
-const grade = calculateGrade(marks);
-console.log(`Student's grade for ${marks} marks is: ${grade}`);
