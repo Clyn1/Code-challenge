@@ -1,34 +1,26 @@
-// Function to calculate the grade
-const calculateGrade = (marks) => {
-    if (marks > 79) {
-        return 'A';
-    } else if (marks >= 60 && marks <= 79) {
-        return 'B';
-    } else if (marks >= 50 && marks <= 59) {
-        return 'C';
-    } else if (marks >= 40 && marks <= 49) {
-        return 'D';
-    } else {
-        return 'E';
-    }
+function calculateGrade(marks) {
+  // Validate input (0-100)
+  if (marks < 0 || marks > 100) {
+    return "Invalid marks! Please enter a value between 0 and 100.";
+  }
+
+  // Determine grade based on marks
+  if (marks > 79) {
+    return "A";
+  } else if (marks >= 60) {
+    return "B";
+  } else if (marks >= 50) {
+    return "C";
+  } else if (marks >= 40) {
+    return "D";
+  } else {
+    return "E";
+  }
 }
 
-// Function to get marks from user input
-const getMarks = () => {
-    return parseFloat(document.getElementById("marksInput").value);
-}
+// Prompt user for input
+const marks = parseFloat(prompt("Enter student marks (between 0 and 100):"));
 
-// Function to display the grade
-const displayGrade = (grade) => {
-    document.getElementById("gradeOutput").textContent = `The student's grade is: ${grade}`;
-}
-
-// Function to handle the button click event
-const handleButtonClick = () => {
-    const marks = getMarks();
-    const grade = calculateGrade(marks);
-    displayGrade(grade);
-}
-
-// Event listener for button click
-document.getElementById("calculateButton").addEventListener("click", handleButtonClick);
+// Calculate and display grade
+const grade = calculateGrade(marks);
+console.log(`Student's grade for ${marks} marks is: ${grade}`);
