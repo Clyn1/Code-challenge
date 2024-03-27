@@ -3,32 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salary Calculator & Grading System</title>
-  <link rel="stylesheet" href="/home/eunivet/persona/Code-challenge-1/style.css">  </head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="challenge1.js"></script>
+  <script src="challenge2.js"></script>
+  <script src="challenge3.js"></script>
+  <title>Java script challnges</title>
+  
+</head>
 <body>
-  <h1>Salary Calculator & Grading System</h1>
-
-  <h2>Grade Calculator</h2>
-  <p>Enter student marks (between 0 and 100):</p>
-  <input type="number" id="student-marks" min="0" max="100">
-  <button onclick="calculateGrade()">Calculate Grade</button>
-  <p id="grade-result"></p>
-  <script> src="/home/eunivet/persona/Code-challenge-1/challenge1.js"</script>
-
-  <h2>Demerit Points Calculator</h2>
-  <p>Enter car speed (km/h):</p>
-  <input type="number" id="car-speed" min="0">
-  <button onclick="calculateDemeritPoints()">Check Demerit Points</button>
-  <p id="demerit-result"></p>
-  <script> src="/home/eunivet/persona/Code-challenge-1/challenge2.js"</script>
-
-  <h2>Salary Calculator</h2>
-  <p>Enter basic salary:</p>
-  <input type="number" id="basic-salary">
-  <p>Enter benefits:</p>
-  <input type="number" id="benefits">
-  <button onclick="calculateNetSalary()">Calculate Net Salary</button>
-  <div id="salary-results"></div>
-
-  <script src="/home/eunivet/persona/Code-challenge-1/challenge2.js"></script>  </body>
+  <button onclick="studentGradeGenerator()">Student Grade Generator</button>
+  <button onclick="speedDetector()">Speed Detector</button>
+  <button onclick="netSalaryCalculator()">Net Salary Calculator</button>
+  <div id="output"></div>
+</body>
 </html>
