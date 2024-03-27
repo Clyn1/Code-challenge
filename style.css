@@ -1,87 +1,24 @@
-/* General Styles */
 body {
-  font-family: sans-serif;
-  margin: 0;
+  background-color: #f2f2f2;
   padding: 20px;
-  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
 }
 
-/* Code Block Styling */
-pre {
-  background-color: #eee;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
+button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
 }
 
-.code-line {
-  /* Highlight specific lines with comments */
-  position: relative;
-}
-
-.code-line:hover .comment {
-  background-color: rgba(255, 255, 0, 0.3);
-}
-
-.comment {
-  color: #993333;
-  font-style: italic;
-  position: absolute;
-  right: 5px;
-  top: 0;
-}
-
-/* Function Names */
-.function-name {
-  color: #007bff;
-  font-weight: bold;
-}
-
-/* Function Parameters */
-.function-parameter {
-  color: #333;
-}
-
-/* Function Body */
-.function-body {
-  padding-left: 20px;
-}
-
-/* Variable Names */
-.variable-name {
-  color: #f0ad4e;
-  font-weight: bold;
-}
-
-/* Numbers */
-.number {
-  color: #28a745;
-}
-
-/* Strings */
-.string {
-  color: #dc3545;
-}
-
-/* Operators and Keywords */
-.operator,
-.keyword {
-  color: #000;
-}
-
-/* Results Section */
-.results {
-  background-color: #e0ffe0;
-  border: 1px solid #ccecec;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 20px;
-}
-
-.result-label {
-  font-weight: bold;
-}
-
-.result-value {
-  color: #28a745;
+#output {
+  text-align: center;
+  margin-top: 30px;
 }
