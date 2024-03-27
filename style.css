@@ -1,45 +1,87 @@
-/* Apply basic styling to the body */
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    padding: 20px;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
 }
 
-/* Style the main program output */
-.output {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+/* Code Block Styling */
+pre {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-/* Style the grade output */
-.grade {
-    font-weight: bold;
-    color: #008000; /* green */
+.code-line {
+  /* Highlight specific lines with comments */
+  position: relative;
 }
 
-/* Style the license status output */
-.license-status {
-    font-weight: bold;
-    color: #ff0000; /* red */
+.code-line:hover .comment {
+  background-color: rgba(255, 255, 0, 0.3);
 }
 
-/* Style the salary details output */
-.salary-details {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+.comment {
+  color: #993333;
+  font-style: italic;
+  position: absolute;
+  right: 5px;
+  top: 0;
 }
 
-/* Style the salary details labels */
-.salary-label {
-    font-weight: bold;
-    color: #333;
+/* Function Names */
+.function-name {
+  color: #007bff;
+  font-weight: bold;
 }
 
-/* Style the salary details values */
-.salary-value {
-    color: #007bff; /* blue */
+/* Function Parameters */
+.function-parameter {
+  color: #333;
+}
+
+/* Function Body */
+.function-body {
+  padding-left: 20px;
+}
+
+/* Variable Names */
+.variable-name {
+  color: #f0ad4e;
+  font-weight: bold;
+}
+
+/* Numbers */
+.number {
+  color: #28a745;
+}
+
+/* Strings */
+.string {
+  color: #dc3545;
+}
+
+/* Operators and Keywords */
+.operator,
+.keyword {
+  color: #000;
+}
+
+/* Results Section */
+.results {
+  background-color: #e0ffe0;
+  border: 1px solid #ccecec;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.result-label {
+  font-weight: bold;
+}
+
+.result-value {
+  color: #28a745;
 }
