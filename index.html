@@ -1,40 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Calculators</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salary Calculator & Grading System</title>
+  <link rel="stylesheet" href="/home/eunivet/persona/Code-challenge-1/style.css">  </head>
 <body>
-    <h1>Interactive Calculators</h1>
+  <h1>Salary Calculator & Grading System</h1>
 
-    <div class="grade-calculator">
-        <h2>Grade Calculator</h2>
-        <button id="prompt-button">Calculate Grade</button>
-        <div id="grade-output"></div>
-    </div>
+  <h2>Grade Calculator</h2>
+  <p>Enter student marks (between 0 and 100):</p>
+  <input type="number" id="student-marks" min="0" max="100">
+  <button onclick="calculateGrade()">Calculate Grade</button>
+  <p id="grade-result"></p>
+  <script> src="/home/eunivet/persona/Code-challenge-1/challenge1.js"</script>
 
-    <div class="license-check">
-        <h2>License Status Check</h2>
-        <label for="car-speed">Enter car speed (km/h):</label>
-        <input type="number" id="car-speed">
-        <button id="check-license-button">Check License Status</button>
-        <div id="license-status-output"></div>
-    </div>
+  <h2>Demerit Points Calculator</h2>
+  <p>Enter car speed (km/h):</p>
+  <input type="number" id="car-speed" min="0">
+  <button onclick="calculateDemeritPoints()">Check Demerit Points</button>
+  <p id="demerit-result"></p>
+  <script> src="/home/eunivet/persona/Code-challenge-1/challenge2.js"</script>
 
-    <div class="salary-calculator">
-        <h2>Net Salary Calculator</h2>
-        <label for="basic-salary">Basic Salary:</label>
-        <input type="number" id="basic-salary" required>
-        <br>
-        <label for="benefits">Benefits:</label>
-        <input type="number" id="benefits" required>
-        <br>
-        <button id="calculate-button">Calculate Net Salary</button>
-        <div id="salary-results"></div>
-    </div>
+  <h2>Salary Calculator</h2>
+  <p>Enter basic salary:</p>
+  <input type="number" id="basic-salary">
+  <p>Enter benefits:</p>
+  <input type="number" id="benefits">
+  <button onclick="calculateNetSalary()">Calculate Net Salary</button>
+  <div id="salary-results"></div>
 
-    <script src="script.js"></script>
-</body>
+  <script src="/home/eunivet/persona/Code-challenge-1/challenge2.js"></script>  </body>
 </html>

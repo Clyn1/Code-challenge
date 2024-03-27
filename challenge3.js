@@ -1,100 +1,111 @@
 // Function to calculate PAYE (Tax) based on the provided KRA Tax Rates
 function calculatePAYE(grossSalary) {
-    let tax = 0;
-    if (grossSalary <= 24000) {
-        tax = 0;
-    } else if (grossSalary <= 32333) {
-        tax = (grossSalary - 24000) * 0.1;
-    } else if (grossSalary <= 40467) {
-        tax = 832 + (grossSalary - 32333) * 0.15;
-    } else if (grossSalary <= 48600) {
-        tax = 2087 + (grossSalary - 40467) * 0.2;
-    } else if (grossSalary <= 56733) {
-        tax = 3720 + (grossSalary - 48600) * 0.25;
-    } else {
-        tax = 5775 + (grossSalary - 56733) * 0.3;
+    // Tax brackets and rates (replace with actual KRA data)
+    const taxBrackets = [
+        { min: 0, max: 18154, rate: 0 },
+        { min: 18155, max: 47004, rate: 0.1 },
+        { min: 47005, max: 102000, rate: 0.25 },
+        { min: 102001, max: Infinity, rate: 0.3 }
+    ];
+
+    // Calculate taxable income (gross salary minus personal relief)
+    const personalRelief = 12298; // Replace with actual personal relief value
+    const taxableIncome = grossSalary - personalRelief;
+
+    // Calculate PAYE
+    let payee = 0;
+    for (const bracket of taxBrackets) {
+        if (taxableIncome > bracket.min) {
+            const taxableAmount = Math.min(taxableIncome - bracket.min, bracket.max - bracket.min);
+            payee += taxableAmount * bracket.rate;
+        } else {
+            break;
+        }
     }
-    return tax;
+
+    return payee;
 }
 
 // Function to calculate NHIF Deductions based on the provided NHIF rates
 function calculateNHIF(grossSalary) {
-    let nhif = 0;
-    if (grossSalary < 6000) {
-        nhif = 150;
+    // NHIF rates and income ceilings (replace with actual NHIF data)
+    const NHIFRates = {
+        below5000: 150,
+        below8000: 300,
+        above8000: (grossSalary * 0.015).toFixed(2) // Dynamic calculation based on income
+    };
+
+    // Find the applicable NHIF deduction
+    let deduction = 0;
+    if (grossSalary <= 5000) {
+        deduction = NHIFRates.below5000;
     } else if (grossSalary <= 8000) {
-        nhif = 300;
-    } else if (grossSalary <= 12000) {
-        nhif = 400;
-    } else if (grossSalary <= 15000) {
-        nhif = 500;
-    } else if (grossSalary <= 20000) {
-        nhif = 600;
-    } else if (grossSalary <= 25000) {
-        nhif = 750;
-    } else if (grossSalary <= 30000) {
-        nhif = 850;
-    } else if (grossSalary <= 35000) {
-        nhif = 900;
-    } else if (grossSalary <= 40000) {
-        nhif = 950;
-    } else if (grossSalary <= 45000) {
-        nhif = 1000;
-    } else if (grossSalary <= 50000) {
-        nhif = 1100;
-    } else if (grossSalary <= 60000) {
-        nhif = 1200;
-    } else if (grossSalary <= 70000) {
-        nhif = 1300;
-    } else if (grossSalary <= 80000) {
-        nhif = 1400;
-    } else if (grossSalary <= 90000) {
-        nhif = 1500;
-    } else if (grossSalary <= 100000) {
-        nhif = 1600;
+        deduction = NHIFRates.below8000;
     } else {
-        nhif = 1700;
+        deduction = NHIFRates.above8000;
     }
-    return nhif;
+
+    return parseFloat(deduction);
 }
 
 // Function to calculate NSSF Deductions based on the provided NSSF rates
 function calculateNSSF(grossSalary) {
-    const nssfRate = 0.06; // NSSF rate is fixed at 6% of gross salary
-    return grossSalary * nssfRate;
+    // NSSF rates and income ceilings (replace with actual NSSF data)
+    const NSSFRates = {
+        min: 6000,
+        max: 18000,
+        employeeRate: 0.06,
+        employerRate: 0.12
+    };
+
+    // Check if salary falls within NSSF contribution range
+    if (grossSalary < NSSFRates.min || grossSalary > NSSFRates.max) {
+        return 0;
+    }
+
+    // Calculate employee contribution
+    const employeeDeduction = grossSalary * NSSFRates.employeeRate;
+
+    return employeeDeduction;
 }
 
 // Main function to calculate net salary
 function calculateNetSalary(basicSalary, benefits) {
     const grossSalary = basicSalary + benefits;
+
     const payee = calculatePAYE(grossSalary);
     const nhifDeductions = calculateNHIF(grossSalary);
     const nssfDeductions = calculateNSSF(grossSalary);
+
     const netSalary = grossSalary - payee - nhifDeductions - nssfDeductions;
 
     return {
-        grossSalary: grossSalary,
-        payee: payee,
-        nhifDeductions: nhifDeductions,
-        nssfDeductions: nssfDeductions,
-        netSalary: netSalary
+        grossSalary: grossSalary.toFixed(2), // Format to 2 decimal places
+        payee: payee.toFixed(2),
+        nhifDeductions: nhifDeductions.toFixed(2),
+        nssfDeductions: nssfDeductions.toFixed(2),
+        netSalary: netSalary.toFixed(2)
     };
 }
 
-// Prompting the user for input values
-const basicSalary = parseFloat(prompt("Enter basic salary:"));
-const benefits = parseFloat(prompt("Enter benefits:"));
+// Example usage (assuming you have input elements)
+const basicSalaryInput = document.getElementById("basic-salary");
+const benefitsInput = document.getElementById("benefits");
+const resultsElement = document.getElementById("salary-results");
 
-// Validating the inputs
-if (isNaN(basicSalary) || isNaN(benefits)) {
-    console.log("Please enter valid numbers for basic salary and benefits.");
-} else {
-    // Calculating net salary and displaying the results
+const calculateButton = document.getElementById("calculate-button");
+calculateButton.addEventListener("click", function() {
+    const basicSalary = parseFloat(basicSalaryInput.value);
+    const benefits = parseFloat(benefitsInput.value);
+    
     const salaryDetails = calculateNetSalary(basicSalary, benefits);
-
-    console.log("Gross Salary:", salaryDetails.grossSalary);
-    console.log("PAYE (Tax):", salaryDetails.payee);
-    console.log("NHIF Deductions:", salaryDetails.nhifDeductions);
-    console.log("NSSF Deductions:", salaryDetails.nssfDeductions);
-    console.log("Net Salary:", salaryDetails.netSalary);
-}
+    
+    // Assuming resultsElement is a div where you want to display results
+    resultsElement.innerHTML = `
+        <p>Gross Salary: ${salaryDetails.grossSalary}</p>
+        <p>PAYE: ${salaryDetails.payee}</p>
+        <p>NHIF Deductions: ${salaryDetails.nhifDeductions}</p>
+        <p>NSSF Deductions: ${salaryDetails.nssfDeductions}</p>
+        <p>Net Salary: ${salaryDetails.netSalary}</p>
+    `;
+});
